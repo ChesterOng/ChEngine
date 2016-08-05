@@ -13,7 +13,7 @@ void Log::toUpperCase(std::string & str)
 
 std::string Log::getSeperator(std::string & type)
 {
-   return std::string(LOG_TYPE_LENGTH_MAX - type.length(), ' ');
+   return std::string(LOG_TYPE_LENGTH_MAX - type.length() + 1, ' ');
 }
 
 std::string Log::getSeperator()
@@ -26,9 +26,11 @@ Log::Log(const std::string & logFilePath, bool isAppend)
    init(logFilePath, isAppend);
 }
 
-bool Log::init(const std::string &logFilePath, bool isAppend = false)
+bool Log::init(const std::string &logFilePath, bool isAppend)
 {
-   std::ofstream os{ logFilePath,std::ios::out | isAppend ? 0 : std::ios::trunc };
+   std::ios::openmode mode = isAppend ? std::ios::out : std::ios::out | std::ios::trunc;
+
+   std::ofstream os{ logFilePath,mode };
 
    if (os.is_open())
    {//File Could be opened
@@ -43,13 +45,39 @@ bool Log::init(const std::string &logFilePath, bool isAppend = false)
    return true;
 }
 
-void Log::print(std::string printStr, std::string type, bool isTab = false)
+void Log::print(std::string printStr, std::string type, bool isTab)
 {
    toUpperCase(printStr);
    toUpperCase(type);
 
    checkLength(type);
 
-   std::string seperator = isTab ? getSeperator(), getSeperator(type);
-   std::cout << "[" << type << "] " << getSeperator(type) 
+   std::string seperator = isTab ? getSeperator() : getSeperator(type);
+   std::cout << "[" << type << "] " << seperator << printStr << '\n';
+}
+
+void Log::write(std::string printStr, std::string type, bool isTab)
+{
+   toUpperCase(printStr);
+   toUpperCase(type);
+
+   checkLength(type);
+
+   std::string seperator = isTab ? getSeperator() : getSeperator(type);
+   std::ofstream os{ _logFilePath,std::ios::app | std::ios::out };
+   if (os.is_open())
+   {
+      os << "[" << type << "] " << seperator << printStr << std::endl;
+      os.close();
+   }
+   else
+   {
+      std::cout << "[ERR] LogFilePath could not be assessed : " << _logFilePath << '\n';
+   }
+}
+
+void Log::pwrite(std::string printStr, std::string type, bool isTab)
+{
+   print(printStr, type, isTab);
+   write(printStr, type, isTab);
 }

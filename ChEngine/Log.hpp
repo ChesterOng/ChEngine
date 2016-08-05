@@ -21,6 +21,7 @@ private:
    //Returns Seperator //Call Check Length before doing this
    std::string getSeperator(std::string &type);
    std::string getSeperator();
+
 public:
    // Const | Destruct
    Log() {}
