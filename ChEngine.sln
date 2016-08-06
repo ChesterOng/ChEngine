@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChEngine", "ChEngine\ChEngine.vcxproj", "{F2B331CE-D848-4259-B166-8BF5DF63FB96}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sorting", "Sorting\Sorting.vcxproj", "{DFDD29DB-4D53-40D7-9C97-B6F561384751}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{F2B331CE-D848-4259-B166-8BF5DF63FB96}.Release|x64.Build.0 = Release|x64
 		{F2B331CE-D848-4259-B166-8BF5DF63FB96}.Release|x86.ActiveCfg = Release|Win32
 		{F2B331CE-D848-4259-B166-8BF5DF63FB96}.Release|x86.Build.0 = Release|Win32
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Debug|x64.ActiveCfg = Debug|x64
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Debug|x64.Build.0 = Debug|x64
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Debug|x86.ActiveCfg = Debug|Win32
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Debug|x86.Build.0 = Debug|Win32
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Release|x64.ActiveCfg = Release|x64
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Release|x64.Build.0 = Release|x64
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Release|x86.ActiveCfg = Release|Win32
+		{DFDD29DB-4D53-40D7-9C97-B6F561384751}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,7 @@
 #define LOG_TYPE_LENGTH_MAX 7
 
 //All Arguments are not mutable
+//Class to display Text to screen and file
 class Log
 {
 private:
