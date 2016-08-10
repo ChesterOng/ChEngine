@@ -11,6 +11,11 @@ OpenGL::~OpenGL()
 {
 }
 
+void OpenGL::initLog(Log * log)
+{
+   _log = log;
+}
+
 void OpenGL::Buffers::initClear()
 {
    glClearColor   (Color.r, Color.g, Color.b, Color.a);

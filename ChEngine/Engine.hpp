@@ -4,6 +4,7 @@
 
 #include "Log.hpp"
 #include "Window.hpp"
+#include "GLSL.hpp"
 
 class Engine
 {
@@ -16,6 +17,7 @@ private:
 public:
    //Variables ------
    Window window;
+   GLSL   GLSL;
    //Construct ------
    Engine();
    ~Engine();

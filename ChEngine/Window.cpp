@@ -51,7 +51,7 @@ void Window::initWindow(const char * title, int x, int y, int w, int h, Uint32 f
 
    if (_window == nullptr)
    {  //Window did not initalise as expected
-      _log->pwrite("SDL Window Cannot Be Created!", "WINDOW");
+      _log->pwrite("SDL Window Cannot Be Created!"             , "WINDOW");
       _log->pwrite("SDL Error : " + std::string(SDL_GetError()), "WINDOW");
    }
 }

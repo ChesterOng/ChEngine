@@ -47,12 +47,17 @@ struct GLStencil
 class OpenGL
 {
 private:
+   //Variables --------
    Log * _log = nullptr;
 
 public:
+   //Constuctor--------
    OpenGL();
    ~OpenGL();
+   //Functions --------
+   void initLog(Log * log);
 
+   //Variables --------
    struct Buffers
    {
       GLbitfield  fields   = GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT;
@@ -65,5 +70,6 @@ public:
       //Call GL Clear
       virtual void clear();
    } buffer;
+
 };
 
