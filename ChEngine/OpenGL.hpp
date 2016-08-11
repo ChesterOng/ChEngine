@@ -53,9 +53,10 @@ private:
 public:
    //Constuctor--------
    OpenGL();
+   OpenGL(Log * log) : _log(log) {}
    ~OpenGL();
    //Functions --------
-   void initLog(Log * log);
+   void     initLog(Log * log);
 
    //Variables --------
    struct Buffers

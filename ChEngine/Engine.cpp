@@ -116,6 +116,7 @@ ChEngine::ChEngine()
 
 ChEngine::~ChEngine()
 {
+   SDL_Quit();
 }
 
 void ChEngine::initLog(Log * log)

@@ -1,11 +1,8 @@
 #include "OpenGL.hpp"
 
-
-
 OpenGL::OpenGL()
 {
 }
-
 
 OpenGL::~OpenGL()
 {

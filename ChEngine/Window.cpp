@@ -78,12 +78,7 @@ void Window::initWindow(const char * title, int x, int y, int w, int h, Uint32 f
    }
 }
 
-void Window::draw()
+void Window::swapWindow()
 {
    SDL_GL_SwapWindow(_window);
-}
-
-void Window::clear()
-{
-   GL.buffer.clear();
 }

@@ -55,13 +55,10 @@ std::string GLSL::readFile(const std::string &filePath)
 }
 
 //Publics
-GLSL::GLSL()
-{
-}
-
 GLSL::~GLSL()
 {
    _log->pwrite("Destructor Called", "Destr", "GLSL");
+   glUseProgram(0);
 
    //Delete Attached Shaders
    rmShaders();
@@ -162,20 +159,16 @@ GLboolean GLSL::compShad(GLuint shaderID)
    return GL_TRUE;
 }
 
-GLboolean GLSL::attchShad(GLuint shaderID)
+void GLSL::attchShad(GLuint shaderID)
 {
    glAttachShader(_progID, shaderID);
    _log->pwrite("Shader " + std::to_string(shaderID) + " has been Attached", "Attach", "Shader");
-
-   return GL_TRUE;
 }
 
-GLboolean GLSL::detchShad(GLuint shaderID)
+void GLSL::detchShad(GLuint shaderID)
 {
    glDetachShader(_progID, shaderID);
    _log->pwrite("Shader " + std::to_string(shaderID) + " has been Detached", "Detach", "Shader");
-
-   return GL_TRUE;
 }
 
 GLboolean GLSL::deletShad(GLuint shaderID)
@@ -230,4 +223,80 @@ GLboolean GLSL::linkProgram()
    }
 
    return GL_TRUE;
+}
+
+void GLSL::useProgram()
+{
+   glUseProgram(_progID);
+}
+
+void GLSL::unuseProgram()
+{
+   glUseProgram(0);
+}
+
+GLint GLSL::getAttribLocation(const GLchar * name)
+{
+   return glGetAttribLocation(_progID, name);
+}
+
+GLint GLSL::getUniformLocation(const GLchar * name)
+{
+   return glGetUniformLocation(_progID, name);
+}
+
+void GLSL::bindAttribLocation(GLuint locationIndex, const GLchar * name)
+{
+   glBindAttribLocation(_progID, locationIndex, name);
+   _log->pwrite(std::string(name) + std::string(" has been bound to Location : ") + std::to_string(locationIndex), "Bind", "GLSL");
+
+}
+
+void GLSL::addEnabledAttrib(GLuint index)
+{
+   for (GLuint &i : _enabledAttribs)
+   {
+      if (i = index)
+      {
+         _log->pwrite("Duplicated Attribute Location : " + std::to_string(index), "Error", "GLSL");
+         return;
+      }
+   }
+
+   //Add Attribute
+   _enabledAttribs.push_back(index);
+   _log->pwrite("Set to Active -> Attribute Location : " + std::to_string(index), "Add", "GLSL");
+}
+
+void GLSL::removeEnabledAttrib(GLuint index)
+{
+   for (auto i = _enabledAttribs.begin(); i != _enabledAttribs.end(); ++i)
+   {
+      if ((*i) == index)
+      {
+         _enabledAttribs.erase(i);
+         _log->pwrite("Set to Inactive -> Attribute Location : " + std::to_string(index), "Remove", "GLSL");
+         return;
+      }
+   }
+
+   _log->pwrite("Unable to set to Inactive -> Attribute Location : " + std::to_string(index), "Error", "GLSL");
+   _log->pwrite("Attribute has not been Set to Active", "Error", "GLSL");
+   return;
+}
+
+void GLSL::useAttribs()
+{
+   for (auto i = _enabledAttribs.begin(); i != _enabledAttribs.end(); ++i)
+   {
+      glEnableVertexAttribArray(*i);
+   }
+}
+
+void GLSL::unuseAttribs()
+{
+   for (auto i = _enabledAttribs.cbegin(); i != _enabledAttribs.cend(); ++i)
+   {
+      glDisableVertexAttribArray(*i);
+   }
 }
