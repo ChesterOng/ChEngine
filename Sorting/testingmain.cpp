@@ -1,12 +1,15 @@
 #include <SDL\SDL.h>
 
 #include <ChEngine\Log.hpp>
+#include <ChEngine\GLSL.hpp>
 
 int main(int argc, char* argv[])
 {
-   Log m_Log;
-   m_Log.init("Error.txt", false);
-   m_Log.write("asdasd");
-   m_Log.print("Hello");
+   Log myLog;
+   myLog.init("C:/Users/Chester/Desktop/log.txt");
+
+   GLSL myGLSL;
+   myGLSL.initLog(&myLog);
+
    return 0;
 }

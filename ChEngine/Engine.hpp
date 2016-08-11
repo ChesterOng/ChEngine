@@ -10,7 +10,7 @@ class Engine
 {
 private:
    //Variables ------
-   Log _log;
+   Log * _log;
    //Functions ------
    void printSDLVersion();
 
@@ -23,7 +23,7 @@ public:
    ~Engine();
 
    //Functions ------
-   void initLog(const std::string &logFilePath, bool isAppend = false);
+   void initLog(Log * log);
    void initSDL(const Uint32 SDLinitFlags);
 };
 

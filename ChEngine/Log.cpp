@@ -39,13 +39,13 @@ bool Log::init(const std::string &logFilePath, bool isAppend)
    }
    else
    {
-      std::cout << "[ERR] LogFilePath could not be assessed : " << logFilePath << '\n';
+      std::cout << "[Info] LogFilePath could not be assessed : " << logFilePath << '\n';
       return false;
    }
    return true;
 }
 
-void Log::print(std::string printStr, std::string type, bool isTab)
+void Log::print(std::string printStr, std::string type, std::string info, bool isTab)
 {
    toUpperCase(printStr);
    toUpperCase(type);
@@ -53,10 +53,10 @@ void Log::print(std::string printStr, std::string type, bool isTab)
    checkLength(type);
 
    std::string seperator = isTab ? getSeperator() : getSeperator(type);
-   std::cout << "[" << type << "] " << seperator << printStr << '\n';
+   std::cout << "[" << type << "] " << seperator << info << " : " << printStr << '\n';
 }
 
-void Log::write(std::string printStr, std::string type, bool isTab)
+void Log::write(std::string printStr, std::string type, std::string info, bool isTab)
 {
    toUpperCase(printStr);
    toUpperCase(type);
@@ -67,17 +67,17 @@ void Log::write(std::string printStr, std::string type, bool isTab)
    std::ofstream os{ _logFilePath,std::ios::app | std::ios::out };
    if (os.is_open())
    {
-      os << "[" << type << "] " << seperator << printStr << std::endl;
+      os << "[" << type << "] " << seperator << info << " : " << printStr << std::endl;
       os.close();
    }
    else
    {
-      std::cout << "[ERR] LogFilePath could not be assessed : " << _logFilePath << '\n';
+      std::cout << "[Info] LogFilePath could not be assessed : " << _logFilePath << '\n';
    }
 }
 
-void Log::pwrite(std::string printStr, std::string type, bool isTab)
+void Log::pwrite(std::string printStr, std::string type, std::string info, bool isTab)
 {
-   print(printStr, type, isTab);
-   write(printStr, type, isTab);
+   print(printStr, type, info, isTab);
+   write(printStr, type, info, isTab);
 }

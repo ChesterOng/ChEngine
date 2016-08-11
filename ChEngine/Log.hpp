@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 
-#define LOG_TYPE_LENGTH_MAX 7
+#define LOG_TYPE_LENGTH_MAX 6
 
 //All Arguments are not mutable
 //Class to display Text to screen and file
@@ -35,13 +35,13 @@ public:
 
    //Printing Functions
    //Prints to Console
-   void print(std::string printStr, std::string type = "ERR", bool isTab = false);
+   void print(std::string printStr, std::string type, std::string info, bool isTab = false);
 
    //Writes to LogFile
-   void write(std::string printStr, std::string type = "ERR", bool isTab = false);
+   void write(std::string printStr, std::string type, std::string info, bool isTab = false);
 
    //Prints and Write
-   void pwrite(std::string printStr, std::string type = "ERR", bool isTab = false);
+   void pwrite(std::string printStr, std::string type, std::string info, bool isTab = false);
 
    inline std::string getFilePath() { return _logFilePath; }
 };

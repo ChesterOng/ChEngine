@@ -9,6 +9,7 @@ OpenGL::OpenGL()
 
 OpenGL::~OpenGL()
 {
+   _log->pwrite("Destructor Called", "Destr", "OpenGL");
 }
 
 void OpenGL::initLog(Log * log)
