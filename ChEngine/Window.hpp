@@ -18,9 +18,8 @@ private:
 public:
    OpenGL GL;
 
-
-
    Window();
+   Window(Log* log) : _log(log) {}
    ~Window();
 
    void initLog(Log* log);

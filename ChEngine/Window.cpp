@@ -13,8 +13,8 @@ void Window::initGLContext()
       _context = SDL_GL_CreateContext(_window);
       if (_context == NULL)
       {
-         _log->pwrite("Creation failed", "Init", "GL Context");
-         _log->pwrite(std::string(SDL_GetError()), "Init", "GL Context");
+         _log->pwrite("Creation failed", "Error", "GL Context");
+         _log->pwrite("SDL Error Log :\n\t" + std::string(SDL_GetError()), "Error", "GL Context");
       }
       else
       {
@@ -23,7 +23,7 @@ void Window::initGLContext()
    }
    else
    {  //Cannot Create as context is still active
-      _log->pwrite("Context still active", "Init", "GL Context");
+      _log->pwrite("Context still active", "Error", "GL Context");
    }
 }
 
@@ -33,18 +33,18 @@ Window::Window()
 
 Window::~Window()
 {
-   _log->pwrite("Destructor Called"   ,"Destr", "Window");
+   _log->pwrite("Destructor Called","Destr", "Window");
    if (_context != nullptr)
    {
       SDL_GL_DeleteContext(_context);
-      _log->pwrite("Deleted"          , "Destr" , "GL Context");
+      _log->pwrite("Deleted", "Destr" , "GL Context");
       _context = nullptr;
    }
 
    if (_window != nullptr)
    {
       SDL_DestroyWindow(_window);
-      _log->pwrite("Deleted"          , "Destr", "Window");
+      _log->pwrite("Deleted", "Destr", "Window");
       _window = nullptr;
    }
 
@@ -64,17 +64,17 @@ void Window::initWindow(const char * title, int x, int y, int w, int h, Uint32 f
 
       if (_window == nullptr)
       {  //Window did not initalise as expected
-         _log->pwrite("Creation Failed"            , "Init", "Window");
+         _log->pwrite("Creation Failed", "Error", "Window");
          _log->pwrite(std::string(SDL_GetError())  , "Init", "Window");
       }
       else
       {
-         _log->pwrite("Creation Success"           , "Init", "Window");
+         _log->pwrite("Creation Success", "Init", "Window");
       }
    }
    else
    {
-      _log->pwrite("Already active"                , "init", "Window");
+      _log->pwrite("Already active", "Error", "Window");
    }
 }
 

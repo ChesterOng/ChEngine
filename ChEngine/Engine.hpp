@@ -6,24 +6,22 @@
 #include "Window.hpp"
 #include "GLSL.hpp"
 
-class Engine
+static class ChEngine
 {
 private:
    //Variables ------
    Log * _log;
    //Functions ------
    void printSDLVersion();
+   void initSDLSubSystems(Uint32 SDLinitFlags);
 
 public:
-   //Variables ------
-   Window window;
-   GLSL   GLSL;
    //Construct ------
-   Engine();
-   ~Engine();
+   ChEngine();
+   ~ChEngine();
 
    //Functions ------
    void initLog(Log * log);
-   void initSDL(const Uint32 SDLinitFlags);
-};
+   void initSDL(Uint32 SDLinitFlags);
+} Engine;
 
